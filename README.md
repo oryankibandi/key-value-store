@@ -1,6 +1,6 @@
 # Key Value Store
 
-This repository is a minimal implementation of a durable key-value store that can be integrated with **[raft consensus algorithm](https://raft.github.io/)** to build a distributed leader-based replicated state machine.
+This repository is a minimal implementation of a durable key-value store that can be integrated with **[raft consensus algorithm](https://raft.github.io/)** to build a leader-based replicated state machine.
 
 Depending on when you are reading this, this will be part of a larger implementation on raft consensus algorithm.
 
@@ -9,7 +9,7 @@ Depending on when you are reading this, this will be part of a larger implementa
 1. Clone the repo
 
     ```bash
-    git clone <url>
+    git clone git@github.com:oryankibandi/key-value-store.git
     ```
 
 2. Build the binary
