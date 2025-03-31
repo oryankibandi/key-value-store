@@ -1,0 +1,34 @@
+# data file
+kv_store.json
+
+# binary
+key_val_store
+
+# Go build & cache files
+/build/
+/bin/
+/pkg/
+
+# Go module cache
+/go.sum
+/go.work
+/go.work.sum
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
