@@ -1,6 +1,6 @@
 # Key Value Store
 
-This repo is a minimal durable key-value store that can be integrated with **[raft consensus algorithm](https://raft.github.io/)** as a state machine.
+This repository is a minimal implementation of a durable key-value store that can be integrated with **[raft consensus algorithm](https://raft.github.io/)** to build a distributed leader-based replicated state machine.
 
 Depending on when you are reading this, this will be part of a larger implementation on raft consensus algorithm.
 
