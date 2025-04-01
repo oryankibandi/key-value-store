@@ -12,7 +12,7 @@ import (
 
 type kvStore struct {
 	data *sync.Map
-	fd   *os.File
+	Fd   *os.File
 }
 
 type Entry struct {
@@ -92,13 +92,13 @@ func (s *kvStore) persistVals() {
 	}
 
 	// Move cursor to the beginning of the file to overwrite existing content
-	_, err = s.fd.Seek(0, 0)
+	_, err = s.Fd.Seek(0, 0)
 	if err != nil {
 		fmt.Println("Error seeking file:", err)
 		return
 	}
 
-	_, err = s.fd.Write(jsonData)
+	_, err = s.Fd.Write(jsonData)
 
 	if err != nil {
 		fmt.Println("ERR => ", err)
@@ -108,9 +108,10 @@ func (s *kvStore) persistVals() {
 
 func InitiateKVState() {
 	f, err := os.OpenFile("kv_store.json", os.O_CREATE|os.O_RDWR, 0644)
+
 	Entries = kvStore{
 		data: &m,
-		fd:   f,
+		Fd:   f,
 	}
 
 	k := make([]byte, 0)

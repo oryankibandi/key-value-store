@@ -132,6 +132,9 @@ func InitializeApi(port string) {
 	<-stop // Wait for termination signal
 	fmt.Println("\nShutting down server...")
 
+	// Close file descriptor
+	kvstate.Entries.Fd.Close()
+
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
