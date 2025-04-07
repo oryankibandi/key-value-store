@@ -28,6 +28,8 @@ var Entries kvStore
 
 var m sync.Map
 
+var mu sync.Mutex
+
 func (r *kvStore) readFromPersistentState() (d []byte) {
 	n, err := os.ReadFile("kv_store.json")
 
@@ -74,6 +76,9 @@ func (s *kvStore) GetVal(k string) (err error, value *Entry) {
 }
 
 func (s *kvStore) persistVals() {
+	mu.Lock()
+	defer mu.Unlock()
+
 	normalMap := make(map[string]string)
 
 	s.data.Range(func(key, value any) bool {
@@ -104,6 +109,18 @@ func (s *kvStore) persistVals() {
 		fmt.Println("ERR => ", err)
 		log.Fatal("Unable to write to persistent state")
 	}
+
+	// truncate file to remove invalid characters
+	fmt.Println("TRUNCATING LENGTH => ", len(jsonData))
+	err = s.Fd.Truncate(int64(len(jsonData)))
+
+	if err != nil {
+		fmt.Println("Unable to truncate kv_store file: ", err)
+
+		return
+	}
+
+	return
 }
 
 func InitiateKVState() {
